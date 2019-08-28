@@ -1,4 +1,4 @@
- 
+
 import boto3
 import json
 import time
@@ -17,7 +17,7 @@ def main():
     kinesis = session.client('kinesis')
 
     while True:
-        with open('athenaAddressSummaryStr10.json') as lines:
+        with open('test.json') as lines:
             for address in lines:
                 kinesis.put_records(StreamName="load_address_stream", Records=[
                 {
@@ -25,7 +25,6 @@ def main():
                     'PartitionKey':"partitionkey"
                 }
                 ])
-            
+
 if __name__ == "__main__":
     main()
- 
