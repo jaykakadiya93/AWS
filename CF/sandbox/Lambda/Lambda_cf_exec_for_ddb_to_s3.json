@@ -1,0 +1,30 @@
+{
+    "CloudFormationS3Bucket": "bsd-martech-cf-templates-818411676569-us-east-2",
+    "CloudFomrationS3Prefix": "Lambda/Sandbox/Orion/ExportOrionFileToS3",
+    "Stacks":
+        [
+            {
+                "StackName": "Bsd-Martech-Lambda-CreateExportDDBToS3-Sandbox",
+                "Region": "us-east-2",
+                "CloudFormationFile": "Lambda_cf_template_ddb_To_s3.json",
+                "Parameters": [
+                    { "ParameterKey": "Role", "ParameterValue": "role/OneCloud/CustomerManaged-Sandbox-818411676569-LambdaExec" },
+                    { "ParameterKey": "S3CodeDeployementBucket", "ParameterValue": "code-deployment-scripts" },
+                    { "ParameterKey": "ZipFileName", "ParameterValue": "KEB-Athena-Data/orion_ddb_to_s3.zip" },
+                    { "ParameterKey": "LambdaFunctionName", "ParameterValue": "Export_orion_ddb_to_s3" },
+                    { "ParameterKey": "ImportDynamoDBStreamARN", "ParameterValue": "ZipZoneMasterViaCFStreamARN" },
+                    { "ParameterKey": "StartingPosition", "ParameterValue": "LATEST" }
+                ]
+            }
+        ],
+    "Tags":[
+        { "Key": "PoC", "Value": "Jay_Kakadiya@comcast.com" },
+        { "Key": "Application", "Value": "Lambda" },
+        { "Key": "Environment", "Value": "Sandbox"},
+        { "Key": "Name", "Value": "ExportOrionFileToS3"},
+        { "Key": "Org", "Value": "bsd"},
+        { "Key": "Domain", "Value": "martech"},
+        { "Key": "ComcastDataClassification", "Value": "Public"},
+        { "Key": "GitCloneURL", "Value": "N/A"}
+    ]
+}

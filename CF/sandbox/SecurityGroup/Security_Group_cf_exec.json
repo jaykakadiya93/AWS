@@ -1,0 +1,35 @@
+{
+    "CloudFormationS3Bucket": "bsd-martech-cf-templates-545148417396-us-east-2",
+    "CloudFomrationS3Prefix": "Security_Group/Sandbox",
+    "Stacks":
+        [
+            {
+                "StackName": "Bsd-Martech-Security-Group-Sandbox",
+                "Region": "us-east-2",
+                "CloudFormationFile": "Security_Group_cf_template.json",
+                "Parameters": [
+                    { "ParameterKey": "GroupName", "ParameterValue": "bsd-martech-test" },
+                    { "ParameterKey": "VpcId", "ParameterValue": "vpc-0b140963" },
+                    { "ParameterKey": "IpProtocolIngress", "ParameterValue": "tcp" },
+                    { "ParameterKey": "FromPortIngress", "ParameterValue": "80" },
+                    { "ParameterKey": "ToPortIngress", "ParameterValue": "80" },
+                    { "ParameterKey": "CidrIpIngress", "ParameterValue": "0.0.0.0/0" },
+                    { "ParameterKey": "IpProtocolEgress", "ParameterValue": "tcp" },
+                    { "ParameterKey": "FromPortEgress", "ParameterValue": "80" },
+                    { "ParameterKey": "ToPortEgress", "ParameterValue": "80" },
+                    { "ParameterKey": "CidrIpEgress", "ParameterValue": "0.0.0.0/0" },
+                    { "ParameterKey": "GroupDescription", "ParameterValue": "Allow TCP to client host" }
+                ]
+            }
+        ],
+    "Tags":[
+        { "Key": "PoC", "Value": "Jay_Kakadiya@comcast.com" },
+        { "Key": "Application", "Value": "Security_Group" },
+        { "Key": "Environment", "Value": "Sandbox"},
+        { "Key": "Name", "Value": "Security_Group"},
+        { "Key": "Org", "Value": "bsd"},
+        { "Key": "Domain", "Value": "martech"},
+        { "Key": "ComcastDataClassification", "Value": "Public"},
+        { "Key": "GitCloneURL", "Value": "N/A"}
+    ]
+}

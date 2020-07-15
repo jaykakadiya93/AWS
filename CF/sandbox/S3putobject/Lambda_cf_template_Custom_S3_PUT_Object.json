@@ -1,0 +1,50 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "LambdaFunction  for Custom S3 PUT OBJECT",
+  "Parameters": {
+    "LambdaFunctionName": {
+      "Description": "Lambda Function Name",
+      "Type": "String"
+    },
+    "Role": {
+      "Description": "Lambda creation Role",
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "LambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "LambdaFunctionName"
+        },
+        "Description": "LambdaFunction  for Custom S3 PUT OBJECT\n",
+        "Code": {
+      "S3Bucket": "code-deployment-scripts",
+      "S3Key": "cloudformation-helpers-master.zip"
+    },
+        "Handler": "cloudformation-helpers-master/aws/s3.putObject",
+        "Timeout": 30,
+        "MemorySize": 128,
+        "Role": {
+                "Fn::Join": [
+                  ":",
+                  [
+                    "arn",
+                    "aws",
+                    "iam",
+                    "",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    {
+                      "Ref": "Role"
+                    }
+                  ]
+                ]
+              },
+        "Runtime": "nodejs8.10"
+      }
+    }
+  }
+}

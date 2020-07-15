@@ -1,0 +1,29 @@
+{
+    "CloudFormationS3Bucket": "bsd-martech-cf-templates-818411676569-us-east-2",
+    "CloudFomrationS3Prefix": "Lambda/Orion",
+    "Stacks":
+        [
+            {
+                "StackName": "Bsd-Martech-Lambda-Creation-S3-To-DDB-sandbox",
+                "Region": "us-east-2",
+                "CloudFormationFile": "Lambda_cf_template_S3_To_ddb.json",
+                "Parameters": [
+                    { "ParameterKey": "Role", "ParameterValue": "arn:aws:iam::818411676569:role/OneCloud/CustomerManaged-Sandbox-818411676569-LambdaExec" },
+                    { "ParameterKey": "S3CodeDeployementBucket", "ParameterValue": "code-deployment-scripts" },
+                    { "ParameterKey": "ZipFileName", "ParameterValue": "s3_to_ddb.zip" },
+                    { "ParameterKey": "LambdaFunctionName", "ParameterValue": "S3_TO_DDB" },
+                    { "ParameterKey": "TopicARN", "ParameterValue": "arn:aws:sns:us-east-2:818411676569:SendSuccessEmail" }
+                ]
+            }
+        ],
+    "Tags":[
+        { "Key": "PoC", "Value": "Jay_Kakadiya@comcast.com" },
+        { "Key": "Application", "Value": "Lambda" },
+        { "Key": "Environment", "Value": "sandbox"},
+        { "Key": "Name", "Value": "LambdaFunction"},
+        { "Key": "Org", "Value": "bsd"},
+        { "Key": "Domain", "Value": "martech"},
+        { "Key": "ComcastDataClassification", "Value": "Public"},
+        { "Key": "GitCloneURL", "Value": "N/A"}
+    ]
+}

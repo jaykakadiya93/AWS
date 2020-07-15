@@ -1,0 +1,61 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Lambda function that Load data into DynamoDB from S3 Bucket\n",
+  "Parameters": {
+    "S3CodeDeployementBucket": {
+      "Description": "S3 Code Deployment Bucket",
+      "Type": "String"
+    },
+    "ZipFileName": {
+      "Description": "ZIP File Name",
+      "Type": "String"
+    },
+    "LambdaFunctionName": {
+      "Description": "Lambda Function Name",
+      "Type": "String"
+    },
+    "Role": {
+      "Description": "Lambda creation Role",
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "LambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "LambdaFunctionName"
+        },
+        "Description": "Lambda function that Load data into DynamoDB from S3 Bucket\n",
+        "Code": {
+          "S3Bucket": {
+            "Ref": "S3CodeDeployementBucket"
+          },
+          "S3Key": {
+            "Ref": "ZipFileName"
+          }
+        },
+        "Handler": "index.lambda_handler",
+        "MemorySize": 1024,
+        "Role": {
+                "Fn::Join": [
+                  ":",
+                  [
+                    "arn",
+                    "aws",
+                    "iam",
+                    "",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    {
+                      "Ref": "Role"
+                    }
+                  ]
+                ]
+              },
+        "Runtime": "python3.6"
+      }
+    }
+  }
+}

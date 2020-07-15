@@ -1,0 +1,98 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "EC2 Instance Creation",
+  "Parameters": {
+    "ImageId": {
+      "Description": "EC2 ImageId",
+      "Type": "String"
+    },
+    "InstanceType": {
+      "Description": "EC2 InstanceType",
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "Instance": {
+      "Type": "AWS::EC2::Instance",
+      "Metadata": {
+        "AWS::CloudFormation::Init": {
+          "config": {
+            "commands": {
+              "1_pvcreate": {
+                "command": "pvcreate /dev/xvdf"
+              },
+              "2_vgcreate": {
+                "command": "vgcreate vg0 /dev/xvdf"
+              },
+              "3_lvcreate": {
+                "command": "lvcreate -l 100%FREE -n myapp vg0"
+              },
+              "4_mkfs": {
+                "command": "mkfs.ext4 /dev/vg0/myapp"
+              },
+              "5_mkdir": {
+                "command": "mkdir /var/myapp"
+              },
+              "7_mount": {
+                "command": "mount -a"
+              }
+            }
+          }
+        }
+      },
+      "Properties": {
+        "ImageId": "ami-0ab01cfcaef6dd4e2",
+        "InstanceType": "t2.micro",
+        "SecurityGroups": [
+          "launch-wizard-1"
+        ],
+        "KeyName": "cbmst",
+        "AvailabilityZone": "us-east-2c",
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "",
+              [
+                "#!/usr/bin/env bash\n",
+                "set -o errexit \n",
+                "yum -y update aws-cfn-bootstrap \n ",
+                "/opt/aws/bin/cfn-init -v --stack ",
+                {
+                  "Ref": "AWS::StackName"
+                },
+                "--resource Instance --region ",
+                {
+                  "Ref": "AWS::Region"
+                },
+                " \n",
+                "/opt/aws/bin/cfn-signal --exit-code $? --stack ",
+                {
+                  "Ref": "AWS::StackName"
+                },
+                " --resource Instance --region ",
+                {
+                  "Ref": "AWS::Region"
+                },
+                " \n"
+              ]
+            ]
+          }
+        },
+        "Volumes": [
+          {
+            "VolumeId": "vol-05f2fd8833111cb51",
+            "Device": "/dev/sdk"
+          }
+        ]
+      }
+    },
+    "Volumes": {
+      "Type": "AWS::EC2::Volume",
+      "Properties": {
+        "AvailabilityZone": "us-east-2c",
+        "SnapshotId": "snap-0e52e6e7b7f01de76",
+        "Size": 1000
+      }
+    }
+  }
+}

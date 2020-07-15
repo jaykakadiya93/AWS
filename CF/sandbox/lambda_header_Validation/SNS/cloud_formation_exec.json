@@ -1,0 +1,28 @@
+{
+    "CloudFormationS3Bucket": "bsd-martech-cf-templates-818411676569-us-east-2",
+    "CloudFomrationS3Prefix": "SNS/Orion",
+    "Stacks":
+        [
+            {
+                "StackName": "Bsd-Martech-SNS-Creation-sandbox",
+                "Region": "us-east-2",
+                "CloudFormationFile": "SNS_cf_template.json",
+                "Parameters": [
+                    { "ParameterKey": "TopicSuccess", "ParameterValue": "SendSuccessEmail" },
+                    { "ParameterKey": "TopicFailed", "ParameterValue": "SendErrorEmail" },
+                    { "ParameterKey": "SubscriptionEndPoint", "ParameterValue": "Jay_Kakadiya@comcast.com" },
+                    { "ParameterKey": "SubscriptionProtocol", "ParameterValue": "email"}
+                ]
+            }
+        ],
+    "Tags":[
+        { "Key": "PoC", "Value": "Jay_Kakadiya@comcast.com" },
+        { "Key": "Application", "Value": "SNS" },
+        { "Key": "Environment", "Value": "sandbox"},
+        { "Key": "Name", "Value": "SNS-Creation"},
+        { "Key": "Org", "Value": "bsd"},
+        { "Key": "Domain", "Value": "martech"},
+        { "Key": "ComcastDataClassification", "Value": "Public"},
+        { "Key": "GitCloneURL", "Value": "N/A"}
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "CloudFormationS3Bucket": "bsd-martech-cf-templates-149676569426-us-east-2",
+    "CloudFomrationS3Prefix": "Lambda/sandbox/Orion/CustomS3PUTObject",
+    "Stacks":
+        [
+            {
+                "StackName": "Bsd-Martech-Lambda-CustomS3PUTObject-sandbox",
+                "Region": "us-east-2",
+                "CloudFormationFile": "Lambda_cf_template_Custom_S3_PUT_Object.json",
+                "Parameters": [
+                    { "ParameterKey": "Role", "ParameterValue": "role/OneCloud/CustomerManaged-Sandbox-818411676569-LambdaExec" },
+                    { "ParameterKey": "LambdaFunctionName", "ParameterValue": "S3PutObject" }
+                ]
+            }
+        ],
+    "Tags":[
+        { "Key": "PoC", "Value": "Jay_Kakadiya@comcast.com" },
+        { "Key": "Application", "Value": "Lambda" },
+        { "Key": "Environment", "Value": "sandbox"},
+        { "Key": "Name", "Value": "LambdaFunction"},
+        { "Key": "Org", "Value": "bsd"},
+        { "Key": "Domain", "Value": "martech"},
+        { "Key": "ComcastDataClassification", "Value": "Public"},
+        { "Key": "GitCloneURL", "Value": "N/A"}
+    ]
+}

@@ -1,0 +1,97 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Redshift Instance Creation",
+  "Parameters": {
+    "ClusterIdentifier": {
+      "Description": "Redshift Cluster Name",
+      "Type": "String"
+    },
+    "DBName": {
+      "Description": "Redshift DBName",
+      "Type": "String"
+    },
+    "Port": {
+      "Description": "Redshift Port Number",
+      "Type": "String"
+    },
+    "MasterUsername": {
+      "Description": "Redshift MasterUsername",
+      "Type": "String"
+    },
+    "MasterUserPassword": {
+      "Description": "Redshift MasterUserPassword",
+      "Type": "String"
+    },
+    "NodeType": {
+      "Description": "Redshift NodeType",
+      "Type": "String",
+      "AllowedValues": [
+        "ds2.xlarge",
+        "ds2.8xlarge",
+        "dc1.large",
+        "dc1.8xlarge",
+        "dc2.large",
+        "dc2.8xlarge"
+      ],
+      "Default": "dc2.large"
+    },
+    "ClusterType": {
+      "Description": "Redshift ClusterType ",
+      "Type": "String",
+      "AllowedValues": [
+        "single-node",
+        "multi-node"
+      ],
+      "Default": "single-node"
+    },
+    "NumberOfNodes": {
+      "Description": "Redshift NumberOfNodes",
+      "Type": "String"
+    },
+    "ClusterSecurityGroups": {
+      "Description": "Redshift ClusterSecurityGroups",
+      "Type": "String"
+    },
+    "AvailabilityZone": {
+      "Description": "Redshift AvailabilityZone Name",
+      "Type": "String",
+      "AllowedValues": [
+        "us-east-2a",
+        "us-east-2b",
+        "us-east-2c"
+      ],
+      "Default": "us-east-2a"
+    }
+  },
+  "Resources": {
+    "RedshiftCluster": {
+      "Type": "AWS::Redshift::Cluster",
+      "Properties": {
+        "ClusterIdentifier": {
+          "Ref": "ClusterIdentifier"
+        },
+        "DBName": {
+          "Ref": "DBName"
+        },
+        "Port": {
+          "Ref": "Port"
+        },
+        "MasterUsername": {
+          "Ref": "MasterUsername"
+        },
+        "MasterUserPassword": {
+          "Ref": "MasterUserPassword"
+        },
+        "NodeType": {
+          "Ref": "NodeType"
+        },
+        "ClusterType": {
+          "Ref": "ClusterType"
+        },
+        "AvailabilityZone": {
+          "Ref": "AvailabilityZone"
+        }
+      }
+    }
+  }
+}

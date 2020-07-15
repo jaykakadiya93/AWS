@@ -1,0 +1,26 @@
+{
+    "CloudFormationS3Bucket": "bsd-martech-cf-templates-818411676569-us-east-2",
+    "CloudFomrationS3Prefix": "S3/Orion",
+    "Stacks":
+        [
+            {
+                "StackName": "Bsd-Martech-S3-Creation-Header-Validation-sandbox",
+                "Region": "us-east-2",
+                "CloudFormationFile": "S3_Bucket_cf_template.json",
+                "Parameters": [
+                    { "ParameterKey": "BucketName", "ParameterValue": "zip-level-test" },
+                    { "ParameterKey": "FunctionName", "ParameterValue": "validate_header" }
+                ]
+            }
+        ],
+    "Tags":[
+        { "Key": "PoC", "Value": "Jay_Kakadiya@comcast.com" },
+        { "Key": "Application", "Value": "S3" },
+        { "Key": "Environment", "Value": "sandbox"},
+        { "Key": "Name", "Value": "S3_Bucket"},
+        { "Key": "Org", "Value": "bsd"},
+        { "Key": "Domain", "Value": "martech"},
+        { "Key": "ComcastDataClassification", "Value": "Public"},
+        { "Key": "GitCloneURL", "Value": "N/A"}
+    ]
+}

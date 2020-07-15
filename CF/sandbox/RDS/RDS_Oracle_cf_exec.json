@@ -1,0 +1,32 @@
+{
+    "CloudFormationS3Bucket": "bsd-martech-cf-templates-545148417396-us-east-2",
+    "CloudFomrationS3Prefix": "RDS_Oracle/Sandbox",
+    "Stacks":
+        [
+            {
+                "StackName": "Bsd-Martech-RDS-Oracle-Sandbox",
+                "Region": "us-east-2",
+                "CloudFormationFile": "RDS_Oracle_cf_template.json",
+                "Parameters": [
+                    { "ParameterKey": "Engine", "ParameterValue": "oracle-se2" },
+                    { "ParameterKey": "DBInstanceClass", "ParameterValue": "db.t2.small" },
+                    { "ParameterKey": "DBName", "ParameterValue": "RDSCF" },
+                    { "ParameterKey": "MasterUsername", "ParameterValue": "ATHENA_KEB" },
+                    { "ParameterKey": "MasterUserPassword", "ParameterValue": "Summer123" },
+                    { "ParameterKey": "AllocatedStorage", "ParameterValue": "100" },
+                    { "ParameterKey": "DBInstanceIdentifier", "ParameterValue": "RDS-CF" },
+                    { "ParameterKey": "AvailabilityZone", "ParameterValue": "us-east-2c" }
+                ]
+            }
+        ],
+    "Tags":[
+        { "Key": "PoC", "Value": "Jay_Kakadiya@comcast.com" },
+        { "Key": "Application", "Value": "RDS_Oracle" },
+        { "Key": "Environment", "Value": "Sandbox"},
+        { "Key": "Name", "Value": "RDS_Oracle"},
+        { "Key": "Org", "Value": "bsd"},
+        { "Key": "Domain", "Value": "martech"},
+        { "Key": "ComcastDataClassification", "Value": "Public"},
+        { "Key": "GitCloneURL", "Value": "N/A"}
+    ]
+}

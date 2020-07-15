@@ -1,0 +1,27 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Kinesis stream Creation",
+  "Parameters": {
+    "Name": {
+      "Description": "Kinesis stream Name",
+      "Type": "String"
+    },
+    "Shards": {
+      "Description": "count of kinesis shards",
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "Kinesisstream": {
+      "Type": "AWS::Kinesis::Stream",
+      "Properties": {
+        "Name": {
+          "Ref": "Name"
+        },
+        "ShardCount": {
+          "Ref": "Shards"
+        }
+      }
+    }
+  }
+}

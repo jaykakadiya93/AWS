@@ -1,0 +1,28 @@
+{
+    "CloudFormationS3Bucket": "bsd-martech-cf-templates-818411676569-us-east-2",
+    "CloudFomrationS3Prefix": "DataPipeline/Orion/",
+    "Stacks":
+        [
+            {
+                "StackName": "Bsd-Martech-DataPipeline-Creation-sandbox",
+                "Region": "us-east-1",
+                "CloudFormationFile": "DataPipeline_cf_template.json",
+                "Parameters": [
+                    { "ParameterKey": "DataPipelineRole", "ParameterValue": "OneCloud/CustomerManaged-Sandbox-818411676569-DatapipelineExec" },
+                    { "ParameterKey": "EC2Role", "ParameterValue": "CustomerManaged-Sandbox-818411676569-Ec2" },
+                    { "ParameterKey": "S3OutputLoc", "ParameterValue": "radius-place" },
+                    { "ParameterKey": "TableName", "ParameterValue": "adobe_recipent"}
+                ]
+            }
+        ],
+    "Tags":[
+        { "Key": "PoC", "Value": "Jay_Kakadiya@comcast.com" },
+        { "Key": "Application", "Value": "DataPipeline" },
+        { "Key": "Name", "Value": "test"},
+        { "Key": "Environment", "Value": "sandbox"},
+        { "Key": "Org", "Value": "bsd"},
+        { "Key": "Domain", "Value": "martech"},
+        { "Key": "ComcastDataClassification", "Value": "Public"},
+        { "Key": "GitCloneURL", "Value": "N/A"}
+    ]
+}
